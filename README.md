@@ -17,10 +17,14 @@ Clone the repository to your local machine and install the dependencies:
 ```bash
 git clone https://github.com/Biot-Savart/ai-playground.git
 cd ai-playground
-npm install
 ```
 
 ### Starting the Frontend
+
+```bash
+cd client
+npm install
+```
 
 Run the following command in the project directory to start the frontend:
 
@@ -28,9 +32,14 @@ Run the following command in the project directory to start the frontend:
 npm start:frontend
 ```
 
-This will launch the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page will reload if you make edits. You will also see any lint errors in the console.
+This will launch the app in development mode. Open [http://localhost:8001](http://localhost:8001) to view it in your browser. The page will reload if you make edits. You will also see any lint errors in the console.
 
 ### Starting the Backend
+
+```bash
+cd server
+npm install
+```
 
 To start the backend server, run:
 
@@ -42,17 +51,7 @@ This command starts the server using `nodemon`, which will automatically restart
 
 ### API Usage
 
-The backend server is configured to handle POST requests at the `/completion` endpoint. It utilizes the OpenAI API to generate responses based on the input provided.
-
-## Build and Deployment
-
-To build the application for production, use:
-
-```bash
-npm run build
-```
-
-This command builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+The backend server is configured to handle POST requests at the `/api/*` endpoint. It utilizes the OpenAI API to generate responses based on the input provided.
 
 ## Learn More
 
