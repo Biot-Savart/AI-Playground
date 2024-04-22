@@ -1,16 +1,16 @@
-const PORT = process.env.PORT || 8000;
 const express = require("express");
-const cors = require("cors");
-const app = express();
+const router = express.Router();
 const OpenAI = require("openai");
 require("dotenv").config();
 
-app.use(express.json());
-app.use(cors());
-
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-app.post("/completion", async (req, res) => {
+// Example route
+router.get("/", (req, res) => {
+  res.send("API Root");
+});
+
+router.post("/completion", async (req, res) => {
   const text = req.body.text;
 
   const completion = await openai.chat.completions.create({
@@ -25,6 +25,4 @@ app.post("/completion", async (req, res) => {
   res.json({ text: completion.choices[0].message.content });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports = router;
