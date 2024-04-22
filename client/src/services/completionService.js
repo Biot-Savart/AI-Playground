@@ -10,7 +10,7 @@ const getCompletion = async (text) => {
       body: JSON.stringify({ text }),
     });
     const data = await response.json();
-    return data.text;
+    return await data.text;
   } catch (error) {
     console.error("Failed to fetch completion:", error);
     return null;

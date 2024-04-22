@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const OpenAI = require("openai");
-require("dotenv").config();
+const CompletionService = require("../../services/completionService");
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const completionService = new CompletionService(); // Create an instance of the service
 
 // Example route
 router.get("/", (req, res) => {
@@ -11,18 +10,13 @@ router.get("/", (req, res) => {
 });
 
 router.post("/completion", async (req, res) => {
-  const text = req.body.text;
-
-  const completion = await openai.chat.completions.create({
-    messages: [
-      { role: "system", content: "You are a helpful assistant." },
-      { role: "user", content: text },
-    ],
-    model: "gpt-3.5-turbo",
-  });
-
-  console.log(completion.choices[0]);
-  res.json({ text: completion.choices[0].message.content });
+  try {
+    const result = await completionService.getCompletion(req.body.text);
+    res.json({ text: result }); // Wrap in an object if just sending a string to adhere to JSON response standards
+  } catch (error) {
+    console.error("Error getting completion:", error);
+    res.status(500).json({ error: "Failed to get completion" });
+  }
 });
 
 module.exports = router;
