@@ -1,8 +1,8 @@
-// src/services/completionService.js
-
 const getCompletion = async (text) => {
+  const apiEndpoint =
+    process.env.REACT_APP_API_ENDPOINT || "http://localhost:8000";
   try {
-    const response = await fetch("http://localhost:8000/api/completion", {
+    const response = await fetch(`${apiEndpoint}/completion`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

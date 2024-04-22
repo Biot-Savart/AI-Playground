@@ -1,4 +1,6 @@
-const app = require("./src/app"); // Import the express app
+const app = require("./src/app");
+require("dotenv").config();
+// Import the express app
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
